@@ -1,7 +1,3 @@
-import java.util.Arrays;
-
-
-// Given a list of numbers starting from 1
 // In this list we have a missing element
 
 // The aim:
@@ -28,15 +24,18 @@ public class Main {
   }
 
   public static int solution(int[] arr) {
-    var sortedArr = arr;
-    int missingElem = 0;
-    Arrays.sort(sortedArr);
-    for (int i = 0; i < sortedArr.length; i++) {
-        if (sortedArr[i] != i+1) {
-          missingElem = i;
-          break;
-        }
+    // Optimal solution
+    // Add up all elems in the arr
+    // Compare elems to factorial of expected size
+    
+    long arrSum = 0;
+    for (int num: arr) {
+      arrSum += num;
     }
-    return missingElem;
+
+    long maxNum = arr.length + 1;
+    long expectedSum = (maxNum * (maxNum + 1) / 2);
+
+    return (int) (expectedSum - arrSum);
   }
 }
