@@ -15,11 +15,29 @@
 public class Main {
   
   public static void main(String[] args) {
-    int[] testArr = {5,2,3,6,1,2};
-    solution(testArr);
+    int[] testArr = {5,2,3,6,1,2,2,7};
+    System.out.println(solution(testArr));
   }
 
   public static int solution(int[] a) {
-      return a[0];
+    int leftSum = a[0];
+    int rightSum = 0;
+    for (int num : a) {
+      rightSum += num;
+    }
+    rightSum -= leftSum;
+
+    int diff = Math.abs(leftSum - rightSum);
+
+    for (int i = 1; i < a.length - 1; i++) {
+      leftSum += a[i];
+      rightSum -= a[i];
+      int currentDiff = Math.abs(leftSum - rightSum);
+      if (diff > currentDiff) {
+        diff = currentDiff;
+      }
+    }
+
+    return diff;
   }
 }
