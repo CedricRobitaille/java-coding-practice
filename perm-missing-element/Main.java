@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 
 // Given a list of numbers starting from 1
 // In this list we have a missing element
@@ -25,7 +27,16 @@ public class Main {
       System.out.println(result);
   }
 
-  public static int solution(int[] a) {
-    return 1;
+  public static int solution(int[] arr) {
+    var sortedArr = arr;
+    int missingElem = 0;
+    Arrays.sort(sortedArr);
+    for (int i = 0; i < sortedArr.length; i++) {
+        if (sortedArr[i] != i+1) {
+          missingElem = i;
+          break;
+        }
+    }
+    return missingElem;
   }
 }
