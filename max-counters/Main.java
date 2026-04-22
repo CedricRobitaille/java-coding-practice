@@ -31,22 +31,25 @@ public class Main {
 
   public static int[] solution(int n, int[] a) {
     int[] counters = new int[n];
-
+    int start = 0;
     int maxElem = 0;
 
     for (int i = 0; i < a.length; i++) {
       int pos = a[i]-1;
 
       if (pos > n-1) {
-        for (int y = 0; y < n; y++) {
-          counters[y] = maxElem;
-        }
+        start = maxElem;
+        counters = new int[n];
       } else {
         counters[pos]++;
         if (counters[pos] > maxElem) {
           maxElem ++;
         }
       }
+    }
+
+    for (int y = 0; y < n; y++) {
+      counters[y] += start;
     }
 
     return counters;
