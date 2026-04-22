@@ -1,3 +1,6 @@
+
+import java.util.Arrays;
+
 // Problem:
 // Input array where we need to preform a cyclic operation.
 // Shift every element of the array to the right.
@@ -14,7 +17,8 @@
 
 public class Main {
   public static void main(String[] args) {
-      
+    int[] inputArr = {1,2,3,4,5};
+    System.out.println(Arrays.toString(solution(inputArr, 3)));
   }
 
   public static int[] solution(int[] a, int k) {
