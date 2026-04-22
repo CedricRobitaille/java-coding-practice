@@ -22,7 +22,7 @@ public class Main {
   }
 
   public static int[] solution(int[] a, int k) {
-    int[] cycledArr = {0,0,0,0,0};
+    int[] cycledArr = new int[a.length]; // create a new arr at the length of the arr.
 
     for (int i = 0; i < a.length; i++) {
       int newIndex = (i + k) % 5; // Get the new position this elem needs to move to
