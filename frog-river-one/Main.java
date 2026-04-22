@@ -9,15 +9,27 @@
 // x and n have a limit of 100,000.
 // If every int is not found, return -1
 
+// Can be solved O(n)
+
 public class Main {
   public static void main(String[] args) {
-    int[] inputArr = {2,4,1,2,3,3,5};
+    int[] inputArr = {4,1,2,3,5,2};
     System.out.println(solution(5, inputArr));
   }
 
   public static int solution(int x, int[] a) {
-    
+    boolean[] arrStatus = new boolean[x+1];
+    int foundCount = 0;
 
+    for (int i = 0; i < a.length; i++) {
+      if (!arrStatus[a[i]]) {
+        foundCount ++;
+        if (foundCount == x) {
+          return i;
+        }
+        arrStatus[a[i]] = true;
+      }
+    }
     return -1;
   }
 }
