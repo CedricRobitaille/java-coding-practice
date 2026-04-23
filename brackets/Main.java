@@ -1,3 +1,6 @@
+
+import java.util.Stack;
+
  
 // Concept:
 // Simple function that accepts a string, and returns if the string is valid or not.
@@ -26,9 +29,35 @@
   }
 
   public static int solution(String a) {
+    char[] charArr = a.toCharArray();
 
+    Stack<Character> openStack = new Stack();
 
-    return 0;
+    for (Character c : charArr) {
+      if (c == '[' || c == '{' || c == '(') {
+        openStack.push(c);
+      } else if (c == ']') {
+        if (openStack.peek() == '[') {
+          openStack.pop();
+        } else {
+          return -1;
+        }
+      } else if (c == '}') {
+        if (openStack.peek() == '{') {
+          openStack.pop();
+        } else {
+          return -1;
+        }
+      } else if (c == ')') {
+        if (openStack.peek() == '(') {
+          openStack.pop();
+        } else {
+          return -1;
+        }
+      } else {
+        return -1;
+      }
+    }
+    return 1;
   }
-
  }
