@@ -1,3 +1,8 @@
+
+import java.util.Stack;
+
+
+
 // Problem:
 // You have a line of fish
 // Each fish have varying directions (L/R), and sizes.
@@ -21,13 +26,41 @@
 
 public class Main {
   public static void main(String[] args) {
-    int[] inputDirections = {};
-    int[] inputSizes = {};
+    int[] inputDirections = {0,0,1,1,0,1};
+    int[] inputSizes = {1,1,2,1,5,1};
     System.out.println(solution(inputDirections, inputSizes));
   }
 
   public static int solution(int[] a, int[] b) {
+    Stack<Integer> attackingFish = new Stack();
+    int safeFish = 0;
 
-    return 0;
+    for (int i = 0; i < a.length; i++) {
+      int direction = a[i];
+      int size = b[i];
+
+      int attackingQty = attackingFish.size();
+
+      if (direction == 0) {
+        boolean survived = true;
+        for (int y = 0; y < attackingQty; y++) {
+          int storedFish = attackingFish.peek();
+          int attackingSize = b[storedFish];
+
+          if (attackingSize < size) {
+            attackingFish.pop();
+          } else {
+            survived = false;
+            break;
+          }
+        }
+        if (survived) {
+          safeFish++;
+        }
+      } else {
+        attackingFish.push(i);
+      }
+    }
+    return attackingFish.size() + safeFish;
   }
 }
