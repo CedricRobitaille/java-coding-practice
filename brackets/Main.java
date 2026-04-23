@@ -37,27 +37,15 @@ import java.util.Stack;
       if (c == '[' || c == '{' || c == '(') {
         openStack.push(c);
       } else if (c == ']') {
-        if (openStack.peek() == '[') {
-          openStack.pop();
-        } else {
-          return -1;
-        }
+        if (openStack.isEmpty() || openStack.pop() != '[') return -1;
       } else if (c == '}') {
-        if (openStack.peek() == '{') {
-          openStack.pop();
-        } else {
-          return -1;
-        }
+        if (openStack.isEmpty() || openStack.pop() != '{') return -1;
       } else if (c == ')') {
-        if (openStack.peek() == '(') {
-          openStack.pop();
-        } else {
-          return -1;
-        }
+        if (openStack.isEmpty() || openStack.pop() != '(') return -1;
       } else {
         return -1;
       }
     }
-    return 1;
+    return openStack.isEmpty() ? 1 : -1;
   }
  }
